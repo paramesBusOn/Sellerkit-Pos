@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47765829820",
+    "project_id": "posnotify-10031",
+    "storage_bucket": "posnotify-10031.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47765829820:android:b81af7db39d5c9417978b9",
+        "android_client_info": {
+          "package_name": "com.example.posbillingdesign"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47765829820-2nidnisqhag55p2jrvoddn2lobnuq6ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCujWq186yyiOu_X6zq3cY7bNmiMFQ4ZE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47765829820-2nidnisqhag55p2jrvoddn2lobnuq6ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

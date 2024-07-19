@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:posproject/Constant/ConstantRoutes.dart';
+import 'package:posproject/Pages/DashBoard/Screens/WebPosScreens/dashboard_web.dart';
 import 'package:posproject/Widgets/Drawer.dart';
 import 'package:posproject/Widgets/MobileDrawer.dart';
 import 'package:provider/provider.dart';
@@ -75,6 +76,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               resizeToAvoidBottomInset: false,
               drawer: naviDrawer(context),
               floatingActionButton: FloatingActionButton(
+                backgroundColor: theme.primaryColor,
                   onPressed: () {
                     Get.toNamed(ConstantRoutes.sales);
                     // Navigator.push(
@@ -84,10 +86,40 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   },
                   child: Container(
                     alignment: Alignment.center,
-                    child: Image.asset('assets/cart.png'),
+                    child: const Icon(Icons.shopping_cart,),
                   )),
               body: SafeArea(
                 child: TabDashScreen(
+                  theme: theme,
+                ),
+              )),
+        );
+
+        //  }});
+      } 
+      else if (constraints.maxWidth >= 1300) {
+        //1300
+        return WillPopScope(
+          onWillPop: () async =>
+              await context.read<DashBoardController>().onWillPop(context),
+          child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              drawer: naviDrawer(context),
+              floatingActionButton: FloatingActionButton(
+                backgroundColor: theme.primaryColor,
+                  onPressed: () {
+                    Get.toNamed(ConstantRoutes.sales);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => PosMainScreens()));
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: const Icon(Icons.shopping_cart,),
+                  )),
+              body: SafeArea(
+                child: DashboardWeb(
                   theme: theme,
                 ),
               )),

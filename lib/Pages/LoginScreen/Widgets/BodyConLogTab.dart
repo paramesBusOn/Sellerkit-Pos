@@ -9,21 +9,24 @@ import '../../ForgotPassword/Screens/Screens.dart';
 
 class BodyLoginTab extends StatelessWidget {
   const BodyLoginTab({
-    Key? key,
-    //required this.logCon,
+    super.key,
+    required this.height,
     required this.theme,
-  }) : super(key: key);
+    required this.width
+  });
 
   //final LoginController logCon;
   final ThemeData theme;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       //  color: Colors.red,
       // margin: EdgeInsets.symmetric(vertical: 10),
-      height: Screens.padingHeight(context) * 0.50,
-      padding: EdgeInsets.symmetric(horizontal: Screens.width(context) * 0.02),
+      height: height * 0.50,
+      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
       child: Form(
         key: context.read<LoginController>().formkey[0],
         child: Column(
@@ -38,64 +41,57 @@ class BodyLoginTab extends StatelessWidget {
                   )
                 : Container(),
             context.watch<LoginController>().getSettingMsg.isNotEmpty
-                ? SizedBox(height: Screens.bodyheight(context) * 0.02)
+                ? SizedBox(height: height * 0.02)
                 : SizedBox(
                     height: 0,
                   ),
-            Container(
-              // width: Screens.width(context) * 0.30,
-              //color: Colors.amber,
-              child: TextFormField(
-                controller: context.read<LoginController>().mycontroller[0],
-                autofocus: true,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.grey[200],
-                  filled: true,
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.white)),
-                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3)),
-                  labelText: 'User',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'User Required';
-                  }
-                  return null;
-                },
+            TextFormField(
+              controller: context.read<LoginController>().mycontroller[0],
+              autofocus: true,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                fillColor: Colors.grey[200],
+                filled: true,
+                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.white)),
+                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3)),
+                labelText: 'User',
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'User Required';
+                }
+                return null;
+              },
             ),
             SizedBox(
-              height: Screens.padingHeight(context) * 0.02,
+              height: height * 0.02,
             ),
-            Container(
-              // width: Screens.width(context) * 0.30,
-              child: TextFormField(
-                controller: context.read<LoginController>().mycontroller[1],
-                obscureText: context.read<LoginController>().getHidepassword,
-                decoration: InputDecoration(
-                  fillColor: Colors.grey[200],
-                  filled: true,
-                  border: InputBorder.none,
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.white)),
-                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3)),
-                  suffixIcon: IconButton(
-                    icon: context.watch<LoginController>().getHidepassword ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
-                    onPressed: () {
-                      context.read<LoginController>().obsecure();
-                    },
-                  ),
-                  labelText: 'Password',
+            TextFormField(
+              controller: context.read<LoginController>().mycontroller[1],
+              obscureText: context.read<LoginController>().getHidepassword,
+              decoration: InputDecoration(
+                fillColor: Colors.grey[200],
+                filled: true,
+                border: InputBorder.none,
+                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.white)),
+                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3)),
+                suffixIcon: IconButton(
+                  icon: context.watch<LoginController>().getHidepassword ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                  onPressed: () {
+                    context.read<LoginController>().obsecure();
+                  },
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Password Required';
-                  }
-                  return null;
-                },
+                labelText: 'Password',
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Password Required';
+                }
+                return null;
+              },
             ),
             SizedBox(
-              height: Screens.padingHeight(context) * 0.01,
+              height: height * 0.01,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -128,11 +124,11 @@ class BodyLoginTab extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: Screens.padingHeight(context) * 0.02,
+              height: height * 0.02,
             ),
             SizedBox(
-              width: Screens.width(context),
-              height: Screens.padingHeight(context) * 0.06,
+              width: width,
+              height:height * 0.06,
               child: ElevatedButton(
                 onPressed: () {
                   context.read<LoginController>().validate(context);

@@ -1,18 +1,19 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, body_might_complete_normally_nullable, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:posproject/Constant/Screen.dart';
 import 'package:posproject/Controller/LoginController/LoginController.dart';
 import 'package:provider/provider.dart';
 
 
 class FooterContainer extends StatelessWidget {
   FooterContainer({
-    Key? key,
+    super.key,
    
     required this.height,
-  }) : super(key: key);
+    required this.width
+  });
   double height;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,7 +37,7 @@ class FooterContainer extends StatelessWidget {
                         contentPadding: EdgeInsets.all(0),
                         // backgroundColor: Colors.transparent,
                         insetPadding:
-                            EdgeInsets.all(Screens.bodyheight(context) * 0.02),
+                            EdgeInsets.all(height * 0.02),
                         content: settings(context, ),
                         //  AlertBox(
                         //   payMent: 'Settings',
@@ -50,14 +51,12 @@ class FooterContainer extends StatelessWidget {
                     });
               },
               child: SizedBox(
-                  width: Screens.width(context) * 0.1,
+                  width: width * 0.1,
                   //color: Colors.red,
                   child: Icon(Icons.settings))),
-          Container(
-            child: Text(
-              'copyright',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+          Text(
+            'copyright',
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -69,11 +68,11 @@ class FooterContainer extends StatelessWidget {
     return StatefulBuilder(builder: (context, st) {
       return Container(
         padding: EdgeInsets.only(
-            top: Screens.padingHeight(context) * 0.01,
-            left: Screens.width(context) * 0.03,
-            right: Screens.width(context) * 0.03,
-            bottom: Screens.padingHeight(context) * 0.01),
-        width: Screens.width(context) * 0.6,
+            top: height * 0.01,
+            left: width * 0.03,
+            right: width * 0.03,
+            bottom: height * 0.01),
+        width: width * 0.6,
         // color: Colors.red,
         child: SingleChildScrollView(
           child: Column(
@@ -82,15 +81,15 @@ class FooterContainer extends StatelessWidget {
             children: [
               Container(
                 // width: Screens.width(context)*0.55,
-                height: Screens.padingHeight(context) * 0.05,
+                height: height * 0.05,
                 color: theme.primaryColor,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       padding: EdgeInsets.only(
-                          left: Screens.padingHeight(context) * 0.02,
-                          right: Screens.padingHeight(context) * 0.02),
+                          left: height * 0.02,
+                          right:height * 0.02),
                       // color: Colors.red,
                       //  width: Screens.width(context) * 0.4,
                       alignment: Alignment.centerLeft,
@@ -110,7 +109,7 @@ class FooterContainer extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.close,
-                          size: Screens.padingHeight(context) * 0.025,
+                          size: height * 0.025,
                           color: Colors.white,
                         ),
                       ),
@@ -119,7 +118,7 @@ class FooterContainer extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: Screens.bodyheight(context) * 0.01,
+                height: height * 0.01,
               ),
               Form(
                 key: context.read<LoginController>().formkey[1],
@@ -186,7 +185,7 @@ class FooterContainer extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: Screens.padingHeight(context) * 0.01,
+                      height: height * 0.01,
                     ),
                     Container(
                       alignment: Alignment.centerRight,
@@ -236,7 +235,7 @@ class FooterContainer extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: Screens.padingHeight(context) * 0.01,
+                      height: height * 0.01,
                     ),
                     Container(
                       alignment: Alignment.centerRight,
@@ -286,7 +285,7 @@ class FooterContainer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: Screens.padingHeight(context) * 0.01),
+                    SizedBox(height: height * 0.01),
                     Container(
                       alignment: Alignment.centerRight,
                       decoration: BoxDecoration(
@@ -338,7 +337,7 @@ class FooterContainer extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: Screens.padingHeight(context) * 0.01),
+              SizedBox(height: height * 0.01),
               InkWell(
                 onTap: () {
                   st(() {
@@ -348,7 +347,7 @@ class FooterContainer extends StatelessWidget {
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  height: Screens.padingHeight(context) * 0.045,
+                  height:height * 0.045,
                   decoration: BoxDecoration(
                     color: theme.primaryColor,
                   ),

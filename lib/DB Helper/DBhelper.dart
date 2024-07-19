@@ -62,6 +62,7 @@ class DBHelper {
   DBHelper._() {}
 
   static Future<Database?> getInstance() async {
+    
     String path = await getDatabasesPath();
     if (_db == null) {
       _db = await openDatabase(join(path, 'PosDBV2.db'),

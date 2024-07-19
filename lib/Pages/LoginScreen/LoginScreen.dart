@@ -1,5 +1,6 @@
 // ignore_for_file: curly_braces_in_flow_control_structures, prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:posproject/Pages/LoginScreen/web/login_web.dart';
 import 'package:provider/provider.dart';
 import '../../Controller/LoginController/LoginController.dart';
 import 'MobileScreen/MbLoginScn.dart';
@@ -13,14 +14,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   @override
   void initState() {
     super.initState();
-     WidgetsBinding.instance.addPostFrameCallback((timeStamp){
-        context.read<LoginController>().init();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<LoginController>().init();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
@@ -31,38 +32,70 @@ class _LoginScreenState extends State<LoginScreen> {
         //     builder: (context, child) {
         //       return Consumer<LoginController>(
         //           builder: (BuildContext context, logCon, Widget? child) {
-                return WillPopScope(
-                  onWillPop: () async => await context.read<LoginController>().onWillPop(context),
-                  child: Scaffold(
-                    resizeToAvoidBottomInset: false,
-                    body: SafeArea(
-                        child: MobileLoginScreen(
-                     // logCon: logCon,
+        return WillPopScope(
+          onWillPop: () async =>
+              await context.read<LoginController>().onWillPop(context),
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(
+                child: MobileLoginScreen(
+                    // logCon: logCon,
                     )),
-                  ),
-                );
-                // });
-                // });
-            //  });
-              //  }),
-           // });
+          ),
+        );
+        // });
+        // });
+        //  });
+        //  }),
+        // });
+      } else if (constraints.maxWidth <= 1300) {
+        // return ChangeNotifierProvider<LoginController>(
+        //     create: (context) => LoginController(),
+        //     builder: (context, child) {
+        //       return Consumer<LoginController>(
+        //           builder: (BuildContext context, logCon, Widget? child) {
+        return WillPopScope(
+          onWillPop: () async =>
+              await context.read<LoginController>().onWillPop(context),
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            body: SafeArea(child: TabLoginScreen()),
+          ),
+        );
+        //   });
+        // });
+      } else if (constraints.maxWidth >= 1300) {
+        // return ChangeNotifierProvider<LoginController>(
+        //     create: (context) => LoginController(),
+        //     builder: (context, child) {
+        //       return Consumer<LoginController>(
+        //           builder: (BuildContext context, logCon, Widget? child) {
+        return WillPopScope(
+          onWillPop: () async =>
+              await context.read<LoginController>().onWillPop(context),
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            body: SafeArea(child: LoginWeb()),
+          ),
+        );
+        //   });
+        // });
       } else {
         // return ChangeNotifierProvider<LoginController>(
         //     create: (context) => LoginController(),
         //     builder: (context, child) {
         //       return Consumer<LoginController>(
         //           builder: (BuildContext context, logCon, Widget? child) {
-                return WillPopScope(
-                  onWillPop: () async => await context.read<LoginController>().onWillPop(context),
-                  child: Scaffold(
-                    resizeToAvoidBottomInset: true,
-                    body: SafeArea(
-                        child: TabLoginScreen(
-                    )),
-                  ),
-                );
-            //   });
-            // });
+        return WillPopScope(
+          onWillPop: () async =>
+              await context.read<LoginController>().onWillPop(context),
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            body: SafeArea(child: TabLoginScreen()),
+          ),
+        );
+        //   });
+        // });
       }
       //  else {
       //   return ChangeNotifierProvider<LoginController>(

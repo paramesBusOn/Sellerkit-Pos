@@ -3,7 +3,7 @@
 //     final quotPutModel = quotPutModelFromJson(jsonString);
 
 import 'dart:convert';
-import 'dart:ffi';
+// import 'dart:ffi';
 
 // QuotPutModel quotPutModelFromJson(String str) => QuotPutModel.fromJson(json.decode(str));
 

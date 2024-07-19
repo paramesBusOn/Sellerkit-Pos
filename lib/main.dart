@@ -2,19 +2,21 @@
 
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:ui';
-
 import 'package:dart_amqp/dart_amqp.dart' as am;
 import 'package:dart_amqp/dart_amqp.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core_web/firebase_core_web.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:posproject/Constant/UserValues.dart';
 import 'package:posproject/Constant/colorGenarator.dart';
@@ -27,7 +29,6 @@ import 'package:posproject/Pages/DashBoard/Screens/DashBoardScreen.dart';
 import 'package:posproject/Pages/PaymentReceipt/Screens/Screens.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
-
 import 'Constant/AllRoutes.dart';
 import 'Constant/AppConstant.dart';
 import 'Constant/Configuration.dart';
@@ -158,19 +159,23 @@ onReciveFCM() async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeLeft,
-  ]);
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  await localNotificationService.flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(localNotificationService.channel);
-  onReciveFCM();
+
+  if (!kIsWeb) {
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
+  }
+
+  // await Firebase.initializeApp();
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // await localNotificationService.flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<
+  //         AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.createNotificationChannel(localNotificationService.channel);
+  // onReciveFCM();
   bool? isdonload = await SharedPref.getDatadonld();
   bool? isLog = await SharedPref.getLoggedINSP();
-  await initializeService();
+  // await initializeService();
   runApp(MyApp(
     isLogged: isLog,
     isdonload: isdonload,
@@ -178,6 +183,7 @@ Future<void> main() async {
 }
 
 Future<void> initializeService() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final service = FlutterBackgroundService();
   await service.configure(
     androidConfiguration: AndroidConfiguration(
@@ -1460,7 +1466,6 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => StockCheckController()),
         ChangeNotifierProvider(create: (_) => StockController()),
         ChangeNotifierProvider(create: (_) => NumberSeriesCtrl()),
-
         ChangeNotifierProvider(
           create: (_) => TransactionSyncController(),
         ),

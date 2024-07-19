@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:posproject/Pages/DownloadPage/web/download_web.dart';
 import 'package:provider/provider.dart';
 
 import '../../Controller/DownLoadController/DownloadController.dart';
@@ -19,7 +20,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<DownLoadController>().init();
-     });
+    });
   }
 
   @override
@@ -28,32 +29,61 @@ class _DownloadScreenState extends State<DownloadScreen> {
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 800) {
         return const Scaffold(
-          // drawer: naviDrawerMob(context),
-           body:
-          // ChangeNotifierProvider<DownLoadController>(
-          //     create: (context) => DownLoadController(),
-          //     builder: (context, child) {
-          //       return Consumer<DownLoadController>(
-          //           builder: (BuildContext context, ExpenseCon, Widget? child) {
-                   SafeArea(child: DownloadPage()));
-              //   });
-              // }),
-        
+            // drawer: naviDrawerMob(context),
+            body:
+                // ChangeNotifierProvider<DownLoadController>(
+                //     create: (context) => DownLoadController(),
+                //     builder: (context, child) {
+                //       return Consumer<DownLoadController>(
+                //           builder: (BuildContext context, ExpenseCon, Widget? child) {
+                SafeArea(child: DownloadPage()));
+        //   });
+        // }),
+      } else if (constraints.maxWidth <= 1300) {
+        return Scaffold(
+            backgroundColor: Colors.grey[300],
+            resizeToAvoidBottomInset: false,
+            // drawer: naviDrawer(context),
+            body:
+                // ChangeNotifierProvider<DownLoadController>(
+                //     create: (context) => DownLoadController(),
+                //     builder: (context, child) {
+                //     return Consumer<DownLoadController>(
+                //     builder: (BuildContext context, ExpenseCon, Widget? child) {
+                const SafeArea(child: DownloadPage())
+            //   });
+            // }),
+            );
+      } else if (constraints.maxWidth >= 1300) {
+        return Scaffold(
+            backgroundColor: Colors.grey[300],
+            resizeToAvoidBottomInset: false,
+            // drawer: naviDrawer(context),
+            body:
+                // ChangeNotifierProvider<DownLoadController>(
+                //     create: (context) => DownLoadController(),
+                //     builder: (context, child) {
+                //     return Consumer<DownLoadController>(
+                //     builder: (BuildContext context, ExpenseCon, Widget? child) {
+                const SafeArea(child: DownloadPageWeb())
+            //   });
+            // }),
+            );
       } else {
         return Scaffold(
-          backgroundColor: Colors.grey[300],
-          resizeToAvoidBottomInset: false,
-          // drawer: naviDrawer(context),
-          body: 
-          // ChangeNotifierProvider<DownLoadController>(
-          //     create: (context) => DownLoadController(),
-          //     builder: (context, child) {
-          //     return Consumer<DownLoadController>(
-          //     builder: (BuildContext context, ExpenseCon, Widget? child) {
-                   const SafeArea(child: DownloadPage())
-              //   });
-              // }),
-        );
+            backgroundColor: Colors.grey[300],
+            resizeToAvoidBottomInset: false,
+            // drawer: naviDrawer(context),
+            body:
+                // ChangeNotifierProvider<DownLoadController>(
+                //     create: (context) => DownLoadController(),
+                //     builder: (context, child) {
+                //     return Consumer<DownLoadController>(
+                //     builder: (BuildContext context, ExpenseCon, Widget? child) {
+                const SafeArea(child: DownloadPage())
+            //   });
+            // }),
+            );
       }
     });
   }

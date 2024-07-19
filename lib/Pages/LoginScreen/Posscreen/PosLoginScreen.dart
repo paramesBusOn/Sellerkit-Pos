@@ -195,7 +195,7 @@ class PosLoginScreen extends StatelessWidget {
                   ),
                 ),
                 FooterContainer(
-                    height: Screens.bodyheight(context) * 0.1)
+                    height: Screens.bodyheight(context) * 0.1, width: 0.0,)
               ],
             ),
           ),

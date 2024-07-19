@@ -7,47 +7,54 @@ import '../../../Constant/Screen.dart';
 import '../Widgets/BodyConLogTab.dart';
 import '../Widgets/HeadLoginTab.dart';
 
-class TabLoginScreen extends StatelessWidget {
-  const TabLoginScreen({
-    Key? key,
+class LoginWeb extends StatelessWidget {
+  const LoginWeb({
+    super.key,
     // required this.logCon,
-  }) : super(key: key);
+  });
 
   // LoginController logCon;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final double widthRight = Screens.width(context) / 2.5;
+
+    final double widthLeft = Screens.width(context) - widthRight;
+    final double height = Screens.padingHeight(context);
     return SizedBox(
       width: Screens.width(context),
       height: Screens.padingHeight(context),
       // color: Colors.yellow,
       child: Row(children: [
         Container(
-          width: Screens.width(context) * 0.50,
+          width: widthLeft,
           color: Theme.of(context).primaryColor,
         ),
         Container(
-          //color: Colors.green,
-          width: Screens.width(context) * 0.50,
-          padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+          // color: Colors.green,
+          width: widthRight,
+          padding: EdgeInsets.only(
+              left: widthRight * 0.01,
+              right: widthRight * 0.01,
+              top: height * 0.01),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 HeaderLoginTab(
-                  height: Screens.bodyheight(context),
-                  width: Screens.width(context),
+                  height: 0,
+                  width: 0,
                 ),
-                SizedBox(height: Screens.padingHeight(context) * 0.02),
+                // SizedBox(height: height * 0.02),
                 BodyLoginTab(
                   theme: theme,
-                  height: Screens.padingHeight(context),
-                  width: Screens.width(context),
+                  height: 0,
+                  width: 0,
                 ),
-                SizedBox(height: Screens.padingHeight(context) * 0.07),
+                // SizedBox(height: height * 0.07),
                 FooterContainer(
-                  height: Screens.padingHeight(context) * 0.1,
-                  width:  Screens.width(context) ,
+                  height: height * 0.1, width: 0,
+                  // width: widthRight,
                 )
               ],
             ),

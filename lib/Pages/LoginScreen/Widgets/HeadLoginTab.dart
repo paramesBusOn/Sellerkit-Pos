@@ -1,21 +1,23 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-
 import '../../../Constant/Screen.dart';
 
 class HeaderLoginTab extends StatelessWidget {
   const HeaderLoginTab({
     Key? key,
+    required this.height,
+    required this.width,
   }) : super(key: key);
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Screens.bodyheight(context) * 0.25,
-      width: Screens.width(context) * 1.0,
+      height: height * 0.25,
+      width: width * 1.0,
       //color: Colors.amber,
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
